@@ -1,0 +1,16 @@
+---
+version: '3'
+
+services:
+  jenkins:
+    container_name: jenkins
+    image: 
+      jenkins/jenkins:2.410
+    volumes:
+      - ./jenkins-data:/var/jenkins_home 
+    environment:
+      - JAVA_OPTS=-Dhttp.proxyHost=192.168.46.40 -Dhttp.proxyPort=80 -Dhttps.proxyHost=192.168.46.40 -Dhttps.proxyPort=80
+    ports:
+      - "8080:8080"
+      - "5000:5000"
+# http://localhost:8080

@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile_client
+    depends_on:
+      - oracle
+  oracle:
+    image: "oracle/database:21.3.0-xe"
+    container_name: oracle
+    shm_size: 1g
+    ports:
+      - 1521:1521
+      - 5500:5500
+      - 8080:8080
+    volumes:
+      - ./data:/opt/oracle/oradata
+      - ./script/startup:/opt/oracle/scripts/startup # 追加
+      - ./script/setup:/opt/oracle/scripts/setup  # 追加
+    environment:
+      - ORACLE_PWD=manager

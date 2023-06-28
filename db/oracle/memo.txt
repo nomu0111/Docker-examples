@@ -1,0 +1,21 @@
+
+
+git clone https://github.com/oracle/docker-images.git
+
+"${CONTAINER_RUNTIME}" build --force-rm=true --no-cache=true \
+       "${BUILD_OPTS[@]}" "${PROXY_SETTINGS[@]}" --build-arg DB_EDITION=${EDITION} \
+       -t "${IMAGE_NAME}" -f "${DOCKERFILE}" . || {
+  echo ""
+
+podman build  --force-rm=true --no-cache=true  --build-arg DB_EDITION=xe  -t "oracle/database:21.3.0-xe" -f  Dockerfile.xe  .
+
+ 
+SJIS
+
+
+podman build  --force-rm=true --no-cache=true  --build-arg DB_EDITION=xe --build-arg ORACLE_CHARACTERSET=JA16SJIS -t "oracle_sjis/database:21.3.0-xe" -f  Dockerfile.xe  .
+
+
+
+
+
