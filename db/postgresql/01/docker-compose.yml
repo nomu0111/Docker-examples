@@ -1,0 +1,29 @@
+version: '3'
+services:
+  pg:
+    image: docker.io/postgres
+    restart: always
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+      - ./db/scripts:/docker-entrypoint-initdb.d
+    environment:
+      # PostgreSQL のスーパーユーザー パスワード
+      POSTGRES_PASSWORD: password
+      # POSTGRES_PASSWORDこのオプションの環境変数は、ユーザーとそのパスワードを設定するために と組み合わせて使用​​されます。この変数は、スーパーユーザー権限を持つ指定されたユーザーと同じ名前のデータベースを作成します。指定しない場合は、デフォルトのユーザーである がpostgres使用されます。
+      POSTGRES_USER: postgres
+      # このオプションの環境変数は、イメージの最初の起動時に作成されるデフォルトのデータベースに別の名前を定義するために使用できます。指定されていない場合は、 の値がPOSTGRES_USER使用されます。
+      POSTGRES_DB: testdb
+      # このオプションの環境変数を使用して、Postgres トランザクション ログの別の場所を定義できます
+      # POSTGRES_INITDB_WALDIR
+      # このオプションの変数は、データベース、ユーザー、およびアドレスの接続を制御するauth-methodために使用できます。指定しない場合は、パスワード認証が使用されます
+      # POSTGRES_HOST_AUTH_METHOD
+
+
+
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
