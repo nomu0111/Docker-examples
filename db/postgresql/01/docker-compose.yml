@@ -3,6 +3,8 @@ services:
   pg:
     image: docker.io/postgres
     restart: always
+    ports:
+      - 5432:5432
     volumes:
       - ./db/data:/var/lib/postgresql/data
       - ./db/scripts:/docker-entrypoint-initdb.d
@@ -17,9 +19,6 @@ services:
       # POSTGRES_INITDB_WALDIR
       # このオプションの変数は、データベース、ユーザー、およびアドレスの接続を制御するauth-methodために使用できます。指定しない場合は、パスワード認証が使用されます
       # POSTGRES_HOST_AUTH_METHOD
-
-
-
 
   adminer:
     image: adminer

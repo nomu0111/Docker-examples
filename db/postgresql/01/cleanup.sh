@@ -4,7 +4,7 @@ APPNAME=${PWD##*/}
 
 echo ${APPNAME}
 
-for LINE in `podman ps -a | grep "\s01_" | awk '{print $1}'`
+for LINE in `podman ps -a | grep "\s${APPNAME}" | awk '{print $1}'`
 do
 #  echo ${LINE}
   podman rm -f ${LINE}
